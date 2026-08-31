@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste Fechado ObraMatch Diário | Google Play</title>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ajude a testar o ObraMatch Diário de Obra 📱" />
+  <meta property="og:description" content="Estamos na fase final de publicação na Google Play. Junte-se à 3ª rodada de testes rápidos de 14 dias com o seu celular Android." />
+  <meta property="og:image" content="https://diario.obramatch.com.br/img/og-diario.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBlue: '#0A3D91',
+            brandOrange: '#FF6F00',
+            brandDark: '#0F172A',
+            brandBg: '#F8FAFC'
+          },
+          boxShadow: {
+            'neo': '4px 4px 0px 0px #0A3D91',
+            'neo-sm': '2px 2px 0px 0px #0A3D91',
+            'neo-lg': '6px 6px 0px 0px #0A3D91',
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAFC; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background-color: #CBD5E1; border-radius: 9999px; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <header class="bg-white border-b-2 border-brandBlue sticky top-0 z-30 px-4 py-3 sm:px-8">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 bg-brandBlue text-white font-bold rounded-lg flex items-center justify-center shadow-neo-sm">
+          <i data-lucide="clipboard-check" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-base sm:text-lg tracking-tight text-brandBlue block leading-tight">ObraMatch Diário</span>
+          <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Programa de Teste Fechado</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button id="btn-open-admin" onclick="toggleAdminModal(true)" class="text-xs font-semibold px-3 py-1.5 rounded border border-slate-300 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5 transition">
+          <i data-lucide="shield" class="w-3.5 h-3.5 text-brandBlue"></i>
+          <span>Painel</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-xl mx-auto w-full px-4 py-6 sm:py-8 flex-1 flex flex-col justify-center">
+    <section id="view-hero" class="space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 border-2 border-brandBlue text-brandBlue text-xs font-bold shadow-neo-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-brandOrange animate-pulse"></span>
+        Etapa Final • Google Play (Rodada 3)
+      </div>
+
+      <div class="space-y-3">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+          Preciso de uma força com o <span class="text-brandBlue underline decoration-brandOrange decoration-4">ObraMatch Diário</span> 📱
+        </h1>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Estou na reta final para publicar nosso aplicativo na Google Play. O Google exige uma rodada oficial de testes fechados com usuários reais antes de liberar o acesso público.
+        </p>
+      </div>
+
+      <div class="bg-white border-2 border-brandBlue rounded-xl p-4 shadow-neo space-y-2.5">
+        <div class="font-bold text-xs uppercase text-slate-400 tracking-wider">Como funciona a participação:</div>
+        <ul class="space-y-2 text-sm text-slate-700 font-medium">
+          <li class="flex items-center gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            <span>Exclusivo para celular <strong>Android</strong></span>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            <span>Instalação oficial e segura pela <strong>Google Play</strong></span>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            <span>Apenas <strong>2 minutos</strong> em alguns dias durante 14 dias</span>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            <span>Não precisa usar todo dia — basta abrir e testar os fluxos</span>
+          </li>
+        </ul>
+      </div>
+
+      <form id="form-lead" onsubmit="handleCadastro(event)" class="bg-white border-2 border-brandBlue rounded-xl p-5 shadow-neo space-y-4">
+        <div class="font-bold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="user-plus" class="w-5 h-5 text-brandBlue"></i>
+          <span>Entrar no grupo oficial de testes</span>
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1" for="lead-name">Seu Primeiro Nome</label>
+            <input type="text" id="lead-name" required placeholder="Ex: André" class="w-full px-3.5 py-2.5 rounded-lg border-2 border-slate-300 focus:border-brandBlue focus:outline-none text-sm font-medium transition" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1" for="lead-email">
+              Gmail utilizado na Google Play Store
+            </label>
+            <input type="email" id="lead-email" required placeholder="seunome@gmail.com" class="w-full px-3.5 py-2.5 rounded-lg border-2 border-slate-300 focus:border-brandBlue focus:outline-none text-sm font-medium transition" />
+            <p class="text-[11px] text-slate-500 mt-1">
+              ⚠️ Informe a conta Google ativa no seu celular para que o download seja autorizado.
+            </p>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-submit-lead" class="w-full bg-brandOrange hover:bg-amber-600 text-white font-bold py-3.5 px-4 rounded-lg border-2 border-brandBlue shadow-neo-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition flex items-center justify-center gap-2 text-base">
+          <span>QUERO AJUDAR NO TESTE</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+          <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3"></i> Seus dados não serão expostos</span>
+          <button type="button" onclick="togglePrivacyModal(true)" class="underline hover:text-brandBlue">Política de Privacidade</button>
+        </div>
+      </form>
+
+      <div class="text-center pt-2">
+        <button type="button" onclick="showView('view-steps')" class="text-xs font-semibold text-slate-600 hover:text-brandBlue underline">
+          Já se cadastrou anteriormente? Acessar meu roteiro de teste
+        </button>
+      </div>
+    </section>
+
+    <section id="view-steps" class="space-y-6 hidden">
+      <div class="bg-blue-50 border-2 border-brandBlue rounded-xl p-4 shadow-neo space-y-1">
+        <div class="flex items-center gap-2 text-brandBlue font-bold text-sm">
+          <i data-lucide="sparkles" class="w-4 h-4 text-brandOrange"></i>
+          <span>Cadastro recebido com sucesso!</span>
+        </div>
+        <p class="text-slate-700 text-xs sm:text-sm">
+          Olá, <strong id="step-user-name" class="text-brandBlue">Participante</strong>! Para ativar sua autorização oficial no Google Play, complete os <strong>3 passos rápidos</strong> abaixo:
+        </p>
+      </div>
+
+      <div class="bg-amber-50 border-l-4 border-brandOrange p-3 rounded-r-lg text-xs text-amber-900 space-y-1">
+        <p class="font-bold flex items-center gap-1.5">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-brandOrange"></i>
+          Atenção à Conta Google:
+        </p>
+        <p class="text-slate-700">
+          Você cadastrou o e-mail <strong id="step-user-email" class="text-slate-900 font-mono">seu-email@gmail.com</strong>. Confirme que está conectado com essa conta nas etapas a seguir.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-white border-2 border-brandBlue rounded-xl p-4 shadow-neo space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-2.5 py-1 rounded bg-brandBlue text-white uppercase tracking-wider">Passo 1</span>
+            <span id="badge-step1" class="text-[11px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Pendente</span>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base">Entrar no Grupo de Testadores</h3>
+            <p class="text-xs text-slate-600 mt-0.5">
+              O Google Play só autoriza o download para contas que participam deste grupo.
+            </p>
+          </div>
+          <a id="link-group" href="https://groups.google.com/g/testadores-obramatch-diario" target="_blank" onclick="trackAction('click_google_group')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-2.5 px-4 rounded-lg border-2 border-brandBlue flex items-center justify-center gap-2 text-sm transition">
+            <i data-lucide="users" class="w-4 h-4 text-brandBlue"></i>
+            <span>1. ENTRAR NO GOOGLE GROUP</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+          </a>
+        </div>
+
+        <div class="bg-white border-2 border-brandBlue rounded-xl p-4 shadow-neo space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-2.5 py-1 rounded bg-brandBlue text-white uppercase tracking-wider">Passo 2</span>
+            <span id="badge-step2" class="text-[11px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Pendente</span>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base">Aceitar o Convite de Teste</h3>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Confirme sua adesão ao programa oficial na página Web da Google Play.
+            </p>
+          </div>
+          <a id="link-optin" href="https://play.google.com/apps/testing/com.obramatch.diario" target="_blank" onclick="trackAction('click_play_optin')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-2.5 px-4 rounded-lg border-2 border-brandBlue flex items-center justify-center gap-2 text-sm transition">
+            <i data-lucide="check-square" class="w-4 h-4 text-emerald-600"></i>
+            <span>2. ACEITAR TESTE NO GOOGLE PLAY</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+          </a>
+        </div>
+
+        <div class="bg-white border-2 border-brandBlue rounded-xl p-4 shadow-neo space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-2.5 py-1 rounded bg-brandOrange text-white uppercase tracking-wider">Passo 3</span>
+            <span id="badge-step3" class="text-[11px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Pendente</span>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base">Instalar o App no Celular</h3>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Abra a Play Store no seu aparelho Android e faça o download.
+            </p>
+          </div>
+          <a id="link-install" href="https://play.google.com/store/apps/details?id=com.obramatch.diario" target="_blank" onclick="trackAction('click_install')" class="w-full bg-brandOrange hover:bg-amber-600 text-white font-bold py-3 px-4 rounded-lg border-2 border-brandBlue shadow-neo-sm flex items-center justify-center gap-2 text-sm transition">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>3. INSTALAR PELA PLAY STORE</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <button onclick="confirmParticipation()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg border-2 border-brandBlue shadow-neo-sm flex items-center justify-center gap-2 text-sm transition">
+          <i data-lucide="thumbs-up" class="w-5 h-5"></i>
+          <span>JÁ CONCLUÍ OS 3 PASSOS (VER MEU ROTEIRO)</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="view-hub" class="space-y-6 hidden">
+      <div class="bg-white border-2 border-brandBlue rounded-xl p-4 shadow-neo space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+            <span class="font-bold text-slate-800 text-sm">Status: Participando do Teste</span>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-blue-100 text-brandBlue">Rodada 3 Oficial</span>
+        </div>
+        <p class="text-xs text-slate-600">
+          Obrigado pelo apoio! Durante os 14 dias, basta realizar testes rápidos ocasionais para gerar utilização real.
+        </p>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <button onclick="openFeedbackModal()" class="flex-1 min-w-[140px] bg-brandBlue hover:bg-blue-900 text-white text-xs font-bold py-2.5 px-3 rounded-lg border border-brandBlue flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="message-square-plus" class="w-4 h-4 text-amber-400"></i>
+            <span>Enviar Feedback</span>
+          </button>
+          <a href="https://play.google.com/store/apps/details?id=com.obramatch.diario" target="_blank" class="flex-1 min-w-[140px] bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold py-2.5 px-3 rounded-lg border border-slate-300 flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="play" class="w-4 h-4 text-brandOrange"></i>
+            <span>Abrir na Play Store</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="font-extrabold text-slate-900 text-base">Roteiro Sugerido (2 min por dia)</h2>
+          <span class="text-xs text-slate-500 font-medium">14 Dias de Teste</span>
+        </div>
+
+        <div class="space-y-2.5 text-xs sm:text-sm">
+          <div class="bg-white border border-slate-300 rounded-lg p-3 hover:border-brandBlue transition flex items-start gap-3">
+            <div class="w-7 h-7 rounded bg-brandBlue text-white font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">D1</div>
+            <div>
+              <strong class="text-slate-900 block">Instalar e Primeiro Acesso</strong>
+              <p class="text-slate-600 text-xs mt-0.5">Abra o app, conheça a interface e crie seu primeiro RDO manual ou de teste.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-300 rounded-lg p-3 hover:border-brandBlue transition flex items-start gap-3">
+            <div class="w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">D3</div>
+            <div>
+              <strong class="text-slate-900 block">Teste de Clima e Fotos</strong>
+              <p class="text-slate-600 text-xs mt-0.5">Ao preencher um relatório, busque o clima por localização e anexe uma foto.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-300 rounded-lg p-3 hover:border-brandBlue transition flex items-start gap-3">
+            <div class="w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">D5</div>
+            <div>
+              <strong class="text-slate-900 block">Assinatura na Tela e PDF</strong>
+              <p class="text-slate-600 text-xs mt-0.5">Colete uma assinatura na tela do celular e gere o arquivo PDF do relatório.</p>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border-2 border-brandOrange rounded-lg p-3 flex items-start gap-3">
+            <div class="w-7 h-7 rounded bg-brandOrange text-white font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">D7</div>
+            <div class="flex-1">
+              <strong class="text-brandOrange block">Primeiro Feedback Rápido (1 min)</strong>
+              <p class="text-slate-700 text-xs mt-0.5">Algo ficou confuso ou travou? Registre seu feedback para corrigirmos.</p>
+              <button onclick="openFeedbackModal()" class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-brandBlue underline">
+                Responder perguntas rápidas &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-300 rounded-lg p-3 hover:border-brandBlue transition flex items-start gap-3">
+            <div class="w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">D11</div>
+            <div>
+              <strong class="text-slate-900 block">Atualização na Play Store</strong>
+              <p class="text-slate-600 text-xs mt-0.5">Atualize para a nova versão na Play Store e confirme as melhorias.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-300 rounded-lg p-3 hover:border-brandBlue transition flex items-start gap-3">
+            <div class="w-7 h-7 rounded bg-emerald-600 text-white font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">D14</div>
+            <div class="flex-1">
+              <strong class="text-emerald-800 block">Encerramento da Rodada</strong>
+              <p class="text-slate-600 text-xs mt-0.5">Envie seu parecer final antes do envio oficial para o Google.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-xs text-slate-500 space-y-1">
+        <p>Dúvidas com a instalação ou permissões da Play Store?</p>
+        <p class="font-semibold text-brandBlue">Contato direto: obramatch@gmail.com</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>ObraMatch Diário • Teste Fechado Google Play</span>
+      <div class="flex items-center gap-3">
+        <button onclick="togglePrivacyModal(true)" class="hover:underline">Privacidade</button>
+        <span>•</span>
+        <button onclick="toggleAdminModal(true)" class="hover:underline font-semibold text-brandBlue">Painel</button>
+      </div>
+    </div>
+  </footer>
+
+  <div id="modal-feedback" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-brandBlue rounded-xl max-w-md w-full p-5 shadow-neo space-y-4 max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center gap-2">
+          <i data-lucide="message-square" class="w-5 h-5 text-brandOrange"></i>
+          <h3 class="font-bold text-slate-900 text-base">Feedback Rápido (1 min)</h3>
+        </div>
+        <button onclick="toggleFeedbackModal(false)" class="text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="form-feedback" onsubmit="handleFeedbackSubmit(event)" class="space-y-3.5 text-xs sm:text-sm">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">O aplicativo funcionou corretamente no seu celular?</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="border-2 border-slate-200 hover:border-brandBlue p-2 rounded-lg text-center cursor-pointer font-medium has-[:checked]:bg-blue-50 has-[:checked]:border-brandBlue">
+              <input type="radio" name="func_status" value="Sim" checked class="hidden" />
+              <span>Sim ✅</span>
+            </label>
+            <label class="border-2 border-slate-200 hover:border-brandBlue p-2 rounded-lg text-center cursor-pointer font-medium has-[:checked]:bg-amber-50 has-[:checked]:border-brandOrange">
+              <input type="radio" name="func_status" value="Parcialmente" class="hidden" />
+              <span>Parcial ⚠️</span>
+            </label>
+            <label class="border-2 border-slate-200 hover:border-brandBlue p-2 rounded-lg text-center cursor-pointer font-medium has-[:checked]:bg-rose-50 has-[:checked]:border-rose-500">
+              <input type="radio" name="func_status" value="Não" class="hidden" />
+              <span>Não ❌</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Qual funcionalidade você testou?</label>
+          <select id="feedback-feature" class="w-full px-3 py-2 rounded-lg border-2 border-slate-300 focus:border-brandBlue text-xs font-medium">
+            <option value="Criar Obra / RDO Manual">Criar Obra / RDO Manual</option>
+            <option value="Áudio com IA / Telegram">Áudio com IA / Telegram</option>
+            <option value="Preenchimento de Clima">Preenchimento de Clima por Localização</option>
+            <option value="Inclusão de Fotos">Inclusão de Fotos</option>
+            <option value="Assinaturas na Tela">Assinaturas na Tela</option>
+            <option value="Geração de Relatório em PDF">Geração de Relatório em PDF</option>
+            <option value="Navegação Geral / Login">Navegação Geral / Login</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Encontrou algum erro, travamento ou dificuldade?</label>
+          <textarea id="feedback-issue" rows="2" placeholder="Descreva o que aconteceu ou deixe em branco se correu tudo bem..." class="w-full px-3 py-2 rounded-lg border-2 border-slate-300 focus:border-brandBlue text-xs"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">O que você melhoraria no aplicativo?</label>
+          <textarea id="feedback-suggestion" rows="2" placeholder="Alguma sugestão ou ideia de melhoria..." class="w-full px-3 py-2 rounded-lg border-2 border-slate-300 focus:border-brandBlue text-xs"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-brandBlue hover:bg-blue-900 text-white font-bold py-2.5 rounded-lg border-2 border-brandBlue shadow-neo-sm transition text-xs">
+          ENVIAR FEEDBACK INTERNO
+        </button>
+
+        <p class="text-[10px] text-slate-500 text-center">
+          Feedback privado utilizado exclusivamente para correção de falhas e auditoria da faixa fechada.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-privacy" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-brandBlue rounded-xl max-w-md w-full p-5 shadow-neo space-y-4 max-h-[85vh] overflow-y-auto custom-scroll text-xs">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h3 class="font-bold text-slate-900 text-sm">Privacidade e Uso dos Dados</h3>
+        <button onclick="togglePrivacyModal(false)" class="text-slate-400 hover:text-slate-700"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="space-y-2 text-slate-600 leading-relaxed">
+        <p><strong>1. Finalidade:</strong> Coletamos apenas seu Primeiro Nome e seu endereço de Gmail para organizar a lista de acesso oficial à faixa de teste fechado do Google Play e registrar feedbacks.</p>
+        <p><strong>2. Não compartilhamento:</strong> Seus dados nunca serão comercializados, distribuídos publicamente ou utilizados para disparos comerciais não solicitados.</p>
+        <p><strong>3. Exclusão:</strong> Você pode solicitar a remoção do seu e-mail do grupo e dos registros a qualquer momento pelo e-mail <em>obramatch@gmail.com</em>.</p>
+      </div>
+      <button onclick="togglePrivacyModal(false)" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2 rounded border border-slate-300">
+        Entendi e Fechar
+      </button>
+    </div>
+  </div>
+
+  <div id="modal-admin" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-white border-2 border-brandBlue rounded-xl max-w-3xl w-full p-5 sm:p-6 shadow-neo-lg max-h-[92vh] overflow-y-auto custom-scroll space-y-5">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded bg-brandBlue text-amber-400 flex items-center justify-center font-bold">
+            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="font-extrabold text-slate-900 text-base sm:text-lg">Mini CRM — Operação de Teste Fechado</h2>
+            <span class="text-xs text-slate-500 font-semibold">ObraMatch Diário • Meta: 20 Testadores Reais</span>
+          </div>
+        </div>
+        <button onclick="toggleAdminModal(false)" class="text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+          <span class="text-[11px] font-bold text-slate-500 uppercase block">Cadastrados</span>
+          <span id="stat-leads" class="text-xl sm:text-2xl font-black text-brandBlue">0</span>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+          <span class="text-[11px] font-bold text-slate-500 uppercase block">Opt-in Declarado</span>
+          <span id="stat-optin" class="text-xl sm:text-2xl font-black text-amber-600">0</span>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+          <span class="text-[11px] font-bold text-slate-500 uppercase block">Instalados</span>
+          <span id="stat-installed" class="text-xl sm:text-2xl font-black text-emerald-600">0</span>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+          <span class="text-[11px] font-bold text-slate-500 uppercase block">Feedbacks</span>
+          <span id="stat-feedbacks" class="text-xl sm:text-2xl font-black text-purple-600">0</span>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+            <i data-lucide="users" class="w-4 h-4 text-brandBlue"></i>
+            <span>Participantes Registrados</span>
+          </h3>
+          <button onclick="exportDataCSV()" class="text-xs font-semibold text-brandBlue hover:underline flex items-center gap-1">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Exportar CSV
+          </button>
+        </div>
+
+        <div class="border border-slate-200 rounded-lg overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100 text-slate-700 font-bold border-b">
+              <tr>
+                <th class="p-2.5">Nome</th>
+                <th class="p-2.5">Gmail</th>
+                <th class="p-2.5">Data</th>
+                <th class="p-2.5">Status Funil</th>
+                <th class="p-2.5 text-right">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="table-testers-body" class="divide-y divide-slate-200 text-slate-700 font-medium"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+          <i data-lucide="bug" class="w-4 h-4 text-brandOrange"></i>
+          <span>Feedbacks Recebidos & Ações Tomadas</span>
+        </h3>
+        <div id="feedbacks-container" class="space-y-2 max-h-40 overflow-y-auto custom-scroll text-xs"></div>
+      </div>
+
+      <div class="pt-2 flex justify-end gap-2 border-t text-xs">
+        <button onclick="toggleAdminModal(false)" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded font-semibold text-slate-700">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const STORAGE_KEY_TESTERS = 'obramatch_testers_data_v3';
+    const STORAGE_KEY_FEEDBACKS = 'obramatch_feedbacks_data_v3';
+    const STORAGE_KEY_USER = 'obramatch_current_user_v3';
+
+    let testers = JSON.parse(localStorage.getItem(STORAGE_KEY_TESTERS) || '[]');
+    let feedbacks = JSON.parse(localStorage.getItem(STORAGE_KEY_FEEDBACKS) || '[]');
+    let currentUser = JSON.parse(localStorage.getItem(STORAGE_KEY_USER) || 'null');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (currentUser && currentUser.email) {
+        showView('view-steps');
+        populateUserSteps(currentUser);
+      } else {
+        showView('view-hero');
+      }
+      refreshAdminStats();
+    });
+
+    function showView(viewId) {
+      document.getElementById('view-hero').classList.add('hidden');
+      document.getElementById('view-steps').classList.add('hidden');
+      document.getElementById('view-hub').classList.add('hidden');
+
+      const target = document.getElementById(viewId);
+      if (target) target.classList.remove('hidden');
+      lucide.createIcons();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleCadastro(e) {
+      e.preventDefault();
+      const name = document.getElementById('lead-name').value.trim();
+      const email = document.getElementById('lead-email').value.trim().toLowerCase();
+
+      if (!name || !email) return;
+
+      const newTester = {
+        id: 't_' + Date.now(),
+        name: name,
+        email: email,
+        joinedAt: new Date().toLocaleDateString('pt-BR'),
+        status: 'CADASTRADO',
+        confidence: 'INFORMADO PELO TESTADOR',
+        lastAction: 'lead_registered',
+        feedbacksCount: 0
+      };
+
+      const existingIdx = testers.findIndex(t => t.email === email);
+      if (existingIdx >= 0) {
+        testers[existingIdx].name = name;
+        currentUser = testers[existingIdx];
+      } else {
+        testers.push(newTester);
+        currentUser = newTester;
+      }
+
+      localStorage.setItem(STORAGE_KEY_TESTERS, JSON.stringify(testers));
+      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(currentUser));
+
+      populateUserSteps(currentUser);
+      showView('view-steps');
+      refreshAdminStats();
+    }
+
+    function populateUserSteps(user) {
+      document.getElementById('step-user-name').textContent = user.name;
+      document.getElementById('step-user-email').textContent = user.email;
+    }
+
+    function trackAction(actionName) {
+      if (!currentUser) return;
+      
+      const idx = testers.findIndex(t => t.email === currentUser.email);
+      if (idx >= 0) {
+        testers[idx].lastAction = actionName;
+        if (actionName === 'click_google_group') {
+          testers[idx].status = 'ENTROU NO GRUPO';
+          document.getElementById('badge-step1').textContent = 'Concluído';
+          document.getElementById('badge-step1').className = 'text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
+        } else if (actionName === 'click_play_optin') {
+          testers[idx].status = 'ADERIU AO TESTE';
+          document.getElementById('badge-step2').textContent = 'Concluído';
+          document.getElementById('badge-step2').className = 'text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
+        } else if (actionName === 'click_install') {
+          testers[idx].status = 'INSTALOU';
+          document.getElementById('badge-step3').textContent = 'Concluído';
+          document.getElementById('badge-step3').className = 'text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
+        }
+        localStorage.setItem(STORAGE_KEY_TESTERS, JSON.stringify(testers));
+        refreshAdminStats();
+      }
+    }
+
+    function confirmParticipation() {
+      if (currentUser) {
+        const idx = testers.findIndex(t => t.email === currentUser.email);
+        if (idx >= 0) {
+          testers[idx].status = 'ATIVO NO TESTE';
+          localStorage.setItem(STORAGE_KEY_TESTERS, JSON.stringify(testers));
+        }
+      }
+      showView('view-hub');
+      refreshAdminStats();
+    }
+
+    function handleFeedbackSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const funcStatus = form.elements['func_status'].value;
+      const feature = document.getElementById('feedback-feature').value;
+      const issue = document.getElementById('feedback-issue').value.trim();
+      const suggestion = document.getElementById('feedback-suggestion').value.trim();
+
+      const newFeedback = {
+        id: 'fb_' + Date.now(),
+        userEmail: currentUser ? currentUser.email : 'anonimo@gmail.com',
+        userName: currentUser ? currentUser.name : 'Testador',
+        date: new Date().toLocaleDateString('pt-BR'),
+        status: funcStatus,
+        feature: feature,
+        issue: issue,
+        suggestion: suggestion,
+        category: issue.length > 5 ? 'BUG / USABILIDADE' : 'SUGESTÃO / VALIDAÇÃO'
+      };
+
+      feedbacks.push(newFeedback);
+      localStorage.setItem(STORAGE_KEY_FEEDBACKS, JSON.stringify(feedbacks));
+
+      if (currentUser) {
+        const idx = testers.findIndex(t => t.email === currentUser.email);
+        if (idx >= 0) {
+          testers[idx].feedbacksCount = (testers[idx].feedbacksCount || 0) + 1;
+          localStorage.setItem(STORAGE_KEY_TESTERS, JSON.stringify(testers));
+        }
+      }
+
+      form.reset();
+      toggleFeedbackModal(false);
+      alert('Feedback enviado com sucesso! Muito obrigado pela sua contribuição.');
+      refreshAdminStats();
+    }
+
+    function toggleFeedbackModal(show) {
+      const el = document.getElementById('modal-feedback');
+      if (show) el.classList.remove('hidden');
+      else el.classList.add('hidden');
+      lucide.createIcons();
+    }
+    function openFeedbackModal() { toggleFeedbackModal(true); }
+
+    function togglePrivacyModal(show) {
+      const el = document.getElementById('modal-privacy');
+      if (show) el.classList.remove('hidden');
+      else el.classList.add('hidden');
+      lucide.createIcons();
+    }
+
+    function toggleAdminModal(show) {
+      const el = document.getElementById('modal-admin');
+      if (show) {
+        refreshAdminStats();
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    function refreshAdminStats() {
+      const leadsCount = testers.length;
+      const optinCount = testers.filter(t => t.status === 'ADERIU AO TESTE' || t.status === 'INSTALOU' || t.status === 'ATIVO NO TESTE').length;
+      const installedCount = testers.filter(t => t.status === 'INSTALOU' || t.status === 'ATIVO NO TESTE').length;
+      const feedbacksCount = feedbacks.length;
+
+      document.getElementById('stat-leads').textContent = leadsCount;
+      document.getElementById('stat-optin').textContent = optinCount;
+      document.getElementById('stat-installed').textContent = installedCount;
+      document.getElementById('stat-feedbacks').textContent = feedbacksCount;
+
+      const tbody = document.getElementById('table-testers-body');
+      tbody.innerHTML = '';
+      if (testers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="p-3 text-center text-slate-400">Nenhum participante registrado ainda.</td></tr>';
+      } else {
+        testers.forEach(t => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-slate-50';
+          tr.innerHTML = `
+            <td class="p-2.5 font-bold text-slate-800">${escapeHtml(t.name)}</td>
+            <td class="p-2.5 font-mono text-[11px] text-slate-600">${escapeHtml(t.email)}</td>
+            <td class="p-2.5 text-slate-500">${t.joinedAt}</td>
+            <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-brandBlue border border-blue-200">${t.status}</span></td>
+            <td class="p-2.5 text-right"><button onclick="deleteTester('${t.id}')" class="text-rose-600 hover:text-rose-800 text-[11px]">Excluir</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      const fbContainer = document.getElementById('feedbacks-container');
+      fbContainer.innerHTML = '';
+      if (feedbacks.length === 0) {
+        fbContainer.innerHTML = '<p class="text-slate-400 italic p-2">Nenhum feedback registrado.</p>';
+      } else {
+        feedbacks.slice(-5).reverse().forEach(f => {
+          const item = document.createElement('div');
+          item.className = 'p-2.5 bg-slate-50 border border-slate-200 rounded text-xs space-y-1';
+          item.innerHTML = `
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-brandBlue">${escapeHtml(f.feature)} • ${escapeHtml(f.userName)}</span>
+              <span class="text-[10px] text-slate-400">${f.date}</span>
+            </div>
+            <p class="text-slate-700"><strong>Status:</strong> ${f.status} | <strong>Relato:</strong> ${escapeHtml(f.issue || 'Nenhum erro relatado.')}</p>
+            ${f.suggestion ? `<p class="text-slate-500 text-[11px]"><strong>Sugestão:</strong> ${escapeHtml(f.suggestion)}</p>` : ''}
+          `;
+          fbContainer.appendChild(item);
+        });
+      }
+      lucide.createIcons();
+    }
+
+    function deleteTester(id) {
+      if (!confirm('Deseja realmente remover este participante?')) return;
+      testers = testers.filter(t => t.id !== id);
+      localStorage.setItem(STORAGE_KEY_TESTERS, JSON.stringify(testers));
+      refreshAdminStats();
+    }
+
+    function exportDataCSV() {
+      if (testers.length === 0) {
+        alert('Não há dados para exportar.');
+        return;
+      }
+      let csv = 'Nome,Gmail,Data,Status,Feedbacks\n';
+      testers.forEach(t => {
+        csv += `"${t.name}","${t.email}","${t.joinedAt}","${t.status}",${t.feedbacksCount || 0}\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `testadores_obramatch_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
